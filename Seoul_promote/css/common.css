@@ -22,26 +22,26 @@
 
 * { margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { position: relative; font-family: NanumSquare; font-weight: 200; overflow: hidden; }
+body { overflow-y: hidden; position: relative; font-family: NanumSquare; font-weight: 200; }
 a { text-decoration: none; color: #fff; font-size: 20px; }
 .bullet,
 label { display: block; }
 input[type='radio'],
 input[type='checkbox'] { display: none; }
 section { width: 100%; height: 100vh; }
-section:not(#visual) .title { display: flex; flex-direction: column; align-items: center; }
-section:not(#visual) .title p { font-size: 40px; }
-section:not(#visual) .title .bar { margin-top: 10px; width: 45px; height: 3px; background: #6789ca; }
+section:not(#visual) > .title { display: flex; flex-direction: column; align-items: center; }
+section:not(#visual) > .title p { font-size: 40px; }
+section:not(#visual) > .title .bar { margin-top: 10px; width: 45px; height: 3px; background: #6789ca; }
 
 .cover { display: flex; flex-direction: column; justify-content: center; position: fixed; height: 100vh; right: 30px; width: 10px; z-index: 11; }
 .bullet_box { height: 305px; display: flex; flex-direction: column; justify-content: space-between; }
-.bullet { background: #dfdfdd; width: 10px; height: 45px; display: flex; justify-content: center; align-items: center; }
-.bullet .name { transition: 0.3s; width: 60px; font-size: 20px; opacity: 0; color: #fff; position: absolute; left: -70px; text-align: right; }
+.bullet { background: #dfdfdd; width: 10px; height: 45px; display: flex; justify-content: center; align-items: center; cursor: pointer; }
+.bullet .name { transition: 0.3s; width: 60px; font-size: 20px; opacity: 0; color: #504e49; position: absolute; left: -70px; text-align: right; }
 .bullet:hover .name { opacity: 1; }
 
 /* visual */
 #visual { color: #fff; }
-#visual .wrap { position: relative; width: 100%; height: 100vh; overflow: hidden; }
+#visual .wrap { position: relative; width: 100%; height: 100%; overflow: hidden; }
 #visual .layer { z-index: 10; display: flex; justify-content: center; align-items: center; position: absolute; width: 100%; height: 100vh; background: rgba(0,0,0,0.4); }
 #visual .layer .top { position: absolute; top: 30px; width: calc(100% - 60px); height: 100px; display: flex; justify-content: space-between; align-items: center; }
 #visual .layer .logo {background: url(../source/logo_seoul.png) no-repeat center/cover; width: 100px; height: 80px; }
@@ -88,6 +88,41 @@ section:not(#visual) .title .bar { margin-top: 10px; width: 45px; height: 3px; b
 #more:checked ~ .wrap .more > :nth-child(2) { margin-left: 0; transition: opacity .75s 2s, margin-left 1s ease 3s; }
 #more:checked ~ .wrap .more > :nth-child(1) { margin-left: 0; transition: opacity .75s 2s, margin-left 1s ease 3.25s; }
 
-
 /* place */
-#place { width: 100%; height: 100vh; display: flex; flex-direction: column; justify-content: space-around; align-items: center; }
+#place { display: flex; flex-direction: column; justify-content: space-around; align-items: center; }
+#place .wrap { width: 85vw; height: 80vh; display: flex; justify-content: space-between; }
+#place .theme_block { width: 19vh; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+#place .theme { overflow: hidden; position: relative; width: 19vh; height: 19vh; display: flex; justify-content: center; align-items: center; cursor: pointer; }
+#place .layer:before { z-index: 10; content: ""; position: absolute; left: 0; right: 0; top: 0; bottom: 0; background: rgba(0,0,0,0.4); }
+#place .text { z-index: 10; position: absolute; color: #dfdfdd; font-weight: 400; left: 10px; bottom: 10px; }
+#place .image { transition: .5s; filter: blur(3px); width: 100%; height: 100%; }
+#place .theme:hover .image { filter: blur(0px); }
+#place .theme:nth-child(1) .image { background: url(../source/theme1.jpg) no-repeat center/cover; }
+#place .theme:nth-child(2) .image { background: url(../source/theme2.png) no-repeat center/cover; }
+#place .theme:nth-child(3) .image { background: url(../source/theme3.jpg) no-repeat center/cover; }
+#place .theme:nth-child(4) .image { background: url(../source/theme4.jpg) no-repeat center/cover; }
+#place .content { width: calc(100% - (18.7vh + 15px)); height: 100%; background: #dfdfdd; display: flex; justify-content: center; align-items: center; }
+#place .content .content_wrap { width: calc(100% - 100px); height: calc(100% - 100px); }
+#place .content .title { font-size: 35px; color: #504e49; }
+#place .content .slide_box { position: relative; margin-top: 30px; width: 100%; height: calc(100% - 40px); display: flex; justify-content: space-between; }
+#place .content .text { position: absolute; left: 25%; bottom: 6%; width: calc(30vh - 40px); height: calc(30vh - 40px); background: #aaf; font-weight: 200; padding: 20px; display: flex; justify-content: center; }
+#place .content .text > button { width: 40%; height: 40px; border: 1px solid #fff; color: #fff; background: inherit; display: block; position: absolute; bottom: 20px; cursor: pointer; transition: .5s; font-size: 11px; }
+#place .content .text > button:hover { background: #fff; color: #000; }
+#place .content .left,
+#place .content .right { width: 28%; height: 40%; display: flex; justify-content: center; align-items: center; }
+#place .content .center_block { background: #fff; width: 38%; height: 100%; }
+#place .content .center_block .center { background: #000; width: 100%; height: 75%; }
+#place .content .center_block .controller { width: 175px; height: 25%; display: flex; justify-content: space-between; align-items: center; margin-right: 15px; float: right; }
+#place .content .center_block .controller div { display: flex; justify-content: center; align-items: center; color: #fff; cursor: pointer; }
+#place .content .center_block .controller .toL { width: 80px; height: 80px; background: #504e49; }
+#place .content .center_block .controller .toR { width: 80px; height: 80px; background: #a4a199; }
+#place .content .left .image,
+#place .content .right .image { width: 100%; height: 100%; }
+
+#theme1:checked ~ .wrap .content .title:before { content: "Historical & Traditional" }
+#theme2:checked ~ .wrap .content .title:before { content: "Culture" }
+#theme3:checked ~ .wrap .content .title:before { content: "Outdoor" }
+#theme4:checked ~ .wrap .content .title:before { content: "Shopping" }
+
+/* food */
+#food { background: #ffa; }
